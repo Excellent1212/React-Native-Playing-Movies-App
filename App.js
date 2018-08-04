@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, FlatList } from 'react-native';
 import MovieItem from './MovieItem';
 import { createStackNavigator } from 'react-navigation';
 import DetailsScreen from './DetailsScreen';
+import PropTypes from 'prop-types';
 
 const MOVIES = [
   {
@@ -17,9 +18,12 @@ const MOVIES = [
     id: 3,
     title: 'Mission Impossible'
   }
-]
+];
 
 class HomeScreen extends React.Component {
+  static propTypes = {
+    navigation: PropTypes.object.isRequired
+  }
   static navigationOptions = {
     title: 'One-Stop Movies'
   };
@@ -54,7 +58,7 @@ const RootStack = createStackNavigator(
   {
     initialRouteName: 'Home'
   }
-)
+);
 
 export default class App extends React.Component {
   render() {

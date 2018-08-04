@@ -1,9 +1,14 @@
-//import liraries
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
+import PropTypes from 'prop-types';
 
-// create a component
-export default class MovieItem extends Component {
+export default class MovieItem extends React.Component {
+  static propTypes = {
+    navigation: PropTypes.shape({
+      navigate: PropTypes.func.isRequired,
+    }).isRequired,
+    title: PropTypes.string.isRequired,
+  }
   render() {
     return (
       <View>

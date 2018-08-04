@@ -1,59 +1,14 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
-import MovieItem from './MovieItem';
 import { createStackNavigator } from 'react-navigation';
+import HomeScreen from './HomeScreen';
 import DetailsScreen from './DetailsScreen';
-import PropTypes from 'prop-types';
 
-const MOVIES = [
-  {
-    id: 1,
-    title: 'Jurassic Park'
-  },
-  {
-    id: 2,
-    title: 'Ant Man'
-  },
-  {
-    id: 3,
-    title: 'Mission Impossible'
-  }
-];
-
-class HomeScreen extends React.Component {
-  static propTypes = {
-    navigation: PropTypes.object.isRequired
-  }
-  static navigationOptions = {
-    title: 'One-Stop Movies'
-  };
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>One-Stop Movies</Text>
-        <FlatList 
-          data={MOVIES} 
-          renderItem={ ({item}) => <MovieItem {...item} navigation={this.props.navigation}/> }
-        />
-      </View>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 50,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const api_key = '14782eb910d2e42db2ba98769fe3ec58';
 
 const RootStack = createStackNavigator(
   {
-    Home: HomeScreen,
-    Details: DetailsScreen
+    Home: { screen: HomeScreen },
+    Details: { screen: DetailsScreen }
   },
   {
     initialRouteName: 'Home'
@@ -61,7 +16,38 @@ const RootStack = createStackNavigator(
 );
 
 export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      movies: [],
+      isLoading: true,
+    };
+  }
+
+  async fetchMovies() {
+    const timeout = ms => new Promise(res => setTimeout(res, ms));
+    try {
+      let response = await fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${api_key}`);
+      let data = await response.json();
+      await timeout(1500);
+      this.setState({ 
+        movies: data.results,
+        isLoading: false
+      });
+    } catch(err) { alert(err); }
+  }
+
+  componentDidMount() {
+    this.fetchMovies();
+  }
+
   render() {
-    return <RootStack/>;
+    return (
+      <RootStack 
+        screenProps={{
+          movies: this.state.movies,
+        }}
+      />
+    );   
   }
 }

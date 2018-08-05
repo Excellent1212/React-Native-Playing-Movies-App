@@ -26,7 +26,7 @@ Author: **Khoa Bui**
 * Run eslint on an individual file: `./node_modules/.bin/eslint App.js`
 
 ## Demo
-<img src="https://i.imgur.com/2DvPGng.gif" alt="demo gif"/>
+<img src="osm-native.gif" alt="demo gif"/>
 
 ## License
     © Khoa Bui 2018 

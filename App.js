@@ -1,5 +1,5 @@
 import React from 'react';
-import TabNav from './BottomTabNavigator';
+import TabNav from './components/BottomTabNavigator';
 
 const apiKey = '14782eb910d2e42db2ba98769fe3ec58';
 

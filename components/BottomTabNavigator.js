@@ -13,7 +13,7 @@ const NowPlayingStack = createStackNavigator(
       screen: NowPlayingScreen,
       navigationOptions: { 
         title: 'Now Playing Movies',
-        headerLeft: ( <Image style={{height: 38, width: 50}} source={require('./oms-logo.png')}/> ),
+        headerLeft: ( <Image style={{height: 38, width: 50}} source={require('../images/oms-logo.png')}/> ),
         headerTitle: ( <Text style={{color:'#e50914', fontSize: 20, fontWeight: 'bold'}}>Now Playing Movies</Text> ),
         headerRight: ( <AppInfoModal/> ),
       },
@@ -38,7 +38,7 @@ const TopRatedStack = createStackNavigator(
       screen: TopRatedScreen,
       navigationOptions: { 
         title: 'Top Rated Movies',
-        headerLeft: ( <Image style={{height: 38, width: 50,}} source={require('./oms-logo.png')}/> ),
+        headerLeft: ( <Image style={{height: 38, width: 50,}} source={require('../images/oms-logo.png')}/> ),
         headerTitle: ( <Text style={{color:'#e50914', fontSize: 20, fontWeight: 'bold'}}>Top Rated Movies</Text> ),
         headerRight: ( <AppInfoModal/> ),
       },

@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 export default class SearchBar extends React.Component {
   static propTypes = {
     handleInputChange: PropTypes.func.isRequired,
+    handleRefresh: PropTypes.func.isRequired,
+    param: PropTypes.string.isRequired,
   }
   render() {
     return (
@@ -15,12 +17,17 @@ export default class SearchBar extends React.Component {
           backgroundColor: '#f5f5f5',
           paddingLeft: 30,
           margin: 30,
-          borderColor: 'black', 
           borderWidth: 1,
+          borderColor: 'rgba(255, 73, 95, 0.5)', 
           borderRadius: 20,
         }}
-        onChangeText={(e) => this.props.handleInputChange(e)}
-        placeholder="Search for a movie"
+        onChangeText={(e) => this.props.handleInputChange(e, this.props.param)}
+        maxLength={30}
+        placeholder='Search for a movie'
+        placeholderTextColor='#f49093'
+        clearButtonMode='always'
+        selectionColor='#e50914'
+        selectTextOnFocus={true}
       />
     );
   }

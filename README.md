@@ -26,7 +26,10 @@ Author: **Khoa Bui**
 * Run eslint on an individual file: `./node_modules/.bin/eslint App.js`
 
 ## Demo
-<img src="images/osm-native.gif" alt="demo gif"/>
+https://snack.expo.io/@buihdk/one-stop-movies
+
+<img src="assets/osm-native.gif" alt="demo gif"/>
+
 
 ## License
     © Khoa Bui 2018 

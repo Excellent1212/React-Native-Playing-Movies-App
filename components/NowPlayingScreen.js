@@ -4,37 +4,31 @@ import SearchBar from './SearchBar';
 import MovieCarousel from './MovieCarousel';
 import PropTypes from 'prop-types';
 
-export default class NowPlayingScreen extends React.Component {
-  static propTypes = {
-    screenProps: PropTypes.object.isRequired, 
-    navigation: PropTypes.shape({
-      navigate: PropTypes.func.isRequired,
-    }).isRequired,
-  }
+const NowPlayingScreen = (props) => {
+  let isLoading  = props.screenProps.isLoading;
+  let nowPlayingMovies = props.screenProps.movies;
+  return (
+    <View style={styles.container}>
+      <SearchBar
+        param = 'now_playing'
+        handleInputChange = {props.screenProps.handleInputChange}
+        handleRefresh = {props.screenProps.handleRefresh} />
+      {isLoading ?
+        <View style={{flex: 1, justifyContent: 'space-around'}}>
+          <Text style={styles.loadingText}>Refreshing movies... Getting popcorn...</Text>
+          <ActivityIndicator size="large" color="#fadc48" />
+        </View> : null} 
+      <MovieCarousel movies = { nowPlayingMovies } navigation = { props.navigation } />
+    </View>
+  );
+};
 
-  render() {
-    let isLoading  = this.props.screenProps.isLoading;
-    let nowPlayingMovies = this.props.screenProps.movies;
-    return (
-      <View style={styles.container}>
-        <SearchBar
-          param = 'now_playing'
-          handleInputChange = {this.props.screenProps.handleInputChange}
-          handleRefresh = {this.props.screenProps.handleRefresh}
-        />
-        {isLoading ?
-          <View style={{flex: 1, justifyContent: 'space-around'}}>
-            <Text style={styles.loadingText}>Refreshing movies... Getting popcorn...</Text>
-            <ActivityIndicator size="large" color="#fadc48" />
-          </View> : null} 
-        <MovieCarousel 
-          movies = { nowPlayingMovies }
-          navigation = { this.props.navigation }
-        />
-      </View>
-    );
-  }
-}
+NowPlayingScreen.propTypes = {
+  screenProps: PropTypes.object.isRequired, 
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -49,3 +43,5 @@ const styles = StyleSheet.create({
     fontSize: 15,
   }
 });
+
+export default NowPlayingScreen;

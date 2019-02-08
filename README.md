@@ -25,9 +25,6 @@ Author: **Khoa Bui**
 * Run eslint on all files: `./node_modules/.bin/eslint .`
 * Run eslint on an individual file: `./node_modules/.bin/eslint App.js`
 
-## Demo
-https://snack.expo.io/@buihdk/one-stop-movies
-
 <img src="assets/osm-native.gif" alt="demo gif"/>
 
 

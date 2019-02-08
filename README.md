@@ -1,4 +1,4 @@
-# One-Stop Movies
+# Playing Movies
 
 Author: **Khoa Bui**
 
